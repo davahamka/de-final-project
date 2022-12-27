@@ -33,10 +33,10 @@ Daftar port yang digunakan pada project ini. Apabila ingin menjalankan project, 
 - pgAdmin
 
 ## Informasi folder & file
-.
+```.
 ├── dags/
 │   ├── __pycache__
-│   ├── scripts/
+│   ├── scripts/ (Untuk BashOperator)
 │   │   └── print_date.sh
 │   ├── etl.py
 │   ├── final_project_dag.py
@@ -51,6 +51,7 @@ Daftar port yang digunakan pada project ini. Apabila ingin menjalankan project, 
 ├── docker-compose.yaml
 ├── Dockerfile
 └── requirements.txt
+```
 
 ## Screenshoot
 Screenshoot dapat dilihat [disini](https://github.com/davahamka/de-final-project/tree/main/screenshoot)

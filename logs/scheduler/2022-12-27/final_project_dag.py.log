@@ -3664,3 +3664,53 @@ Please take a look at these docs to improve your DAG import time:
 [2022-12-27T13:36:45.223+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:36:45.222+0000] {dag.py:2676} INFO - Sync 1 DAGs
 [2022-12-27T13:36:45.441+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:36:45.441+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
 [2022-12-27T13:36:45.737+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 3.882 seconds
+[2022-12-27T13:37:16.338+0000] {processor.py:153} INFO - Started process (PID=1602) to work on /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:16.341+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/final_project_dag.py for tasks to queue
+[2022-12-27T13:37:16.342+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:16.342+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:19.708+0000] {logging_mixin.py:137} WARNING - [nltk_data] Downloading package stopwords to
+[nltk_data]     /home/airflow/nltk_data...
+[2022-12-27T13:37:19.712+0000] {logging_mixin.py:137} WARNING - [nltk_data]   Package stopwords is already up-to-date!
+[2022-12-27T13:37:19.750+0000] {processor.py:753} INFO - DAG(s) dict_keys(['final_project_dag']) retrieved from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:19.900+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:19.899+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2022-12-27T13:37:20.059+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:20.058+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
+[2022-12-27T13:37:20.204+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 3.870 seconds
+[2022-12-27T13:37:50.506+0000] {processor.py:153} INFO - Started process (PID=1675) to work on /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:50.508+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/final_project_dag.py for tasks to queue
+[2022-12-27T13:37:50.512+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:50.512+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:53.092+0000] {logging_mixin.py:137} WARNING - [nltk_data] Downloading package stopwords to
+[nltk_data]     /home/airflow/nltk_data...
+[2022-12-27T13:37:53.095+0000] {logging_mixin.py:137} WARNING - [nltk_data]   Package stopwords is already up-to-date!
+[2022-12-27T13:37:53.116+0000] {processor.py:753} INFO - DAG(s) dict_keys(['final_project_dag']) retrieved from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:37:53.198+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:53.197+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2022-12-27T13:37:53.287+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:37:53.287+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
+[2022-12-27T13:37:53.362+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 2.860 seconds
+[2022-12-27T13:38:23.725+0000] {processor.py:153} INFO - Started process (PID=1757) to work on /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:38:23.730+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/final_project_dag.py for tasks to queue
+[2022-12-27T13:38:23.732+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:38:23.732+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:38:31.993+0000] {logging_mixin.py:137} WARNING - [nltk_data] Downloading package stopwords to
+[nltk_data]     /home/airflow/nltk_data...
+[2022-12-27T13:38:31.997+0000] {logging_mixin.py:137} WARNING - [nltk_data]   Package stopwords is already up-to-date!
+[2022-12-27T13:38:32.024+0000] {processor.py:753} INFO - DAG(s) dict_keys(['final_project_dag']) retrieved from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:38:32.095+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:38:32.094+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2022-12-27T13:38:32.161+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:38:32.161+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
+[2022-12-27T13:38:32.209+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 8.489 seconds
+[2022-12-27T13:39:02.423+0000] {processor.py:153} INFO - Started process (PID=1847) to work on /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:02.429+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/final_project_dag.py for tasks to queue
+[2022-12-27T13:39:02.434+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:02.433+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:06.577+0000] {logging_mixin.py:137} WARNING - [nltk_data] Downloading package stopwords to
+[nltk_data]     /home/airflow/nltk_data...
+[2022-12-27T13:39:06.580+0000] {logging_mixin.py:137} WARNING - [nltk_data]   Package stopwords is already up-to-date!
+[2022-12-27T13:39:06.606+0000] {processor.py:753} INFO - DAG(s) dict_keys(['final_project_dag']) retrieved from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:06.690+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:06.690+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2022-12-27T13:39:06.761+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:06.761+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
+[2022-12-27T13:39:06.813+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 4.405 seconds
+[2022-12-27T13:39:37.003+0000] {processor.py:153} INFO - Started process (PID=1926) to work on /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:37.009+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/final_project_dag.py for tasks to queue
+[2022-12-27T13:39:37.016+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:37.015+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:42.559+0000] {logging_mixin.py:137} WARNING - [nltk_data] Downloading package stopwords to
+[nltk_data]     /home/airflow/nltk_data...
+[2022-12-27T13:39:42.565+0000] {logging_mixin.py:137} WARNING - [nltk_data]   Package stopwords is already up-to-date!
+[2022-12-27T13:39:42.626+0000] {processor.py:753} INFO - DAG(s) dict_keys(['final_project_dag']) retrieved from /opt/airflow/dags/final_project_dag.py
+[2022-12-27T13:39:42.772+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:42.771+0000] {dag.py:2676} INFO - Sync 1 DAGs
+[2022-12-27T13:39:42.871+0000] {logging_mixin.py:137} INFO - [2022-12-27T13:39:42.871+0000] {dag.py:3427} INFO - Setting next_dagrun for final_project_dag to 2022-12-27T00:00:00+00:00, run_after=2022-12-28T00:00:00+00:00
+[2022-12-27T13:39:42.966+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/final_project_dag.py took 5.973 seconds
