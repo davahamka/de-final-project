@@ -1,47 +1,110 @@
 import tweepy
+import json
+import re
 import time
+from bson import json_util
 from sqlalchemy import create_engine
 import pandas as pd
+from kafka import KafkaConsumer, KafkaProducer
 
 counter = 0
 
 
 def start_etl():
-    class Listener(tweepy.StreamingClient):
-        def on_tweet(self, tweet):
-            global counter
+
+    producer = KafkaProducer(bootstrap_servers=['broker'])
+
+    class IDPrinter(tweepy.StreamingClient):
+        def __init__(self, BEARER_TOKEN):
+            self.counter = 0
+            self.limit = 10
+            super(IDPrinter, self).__init__(BEARER_TOKEN)
+
+        def on_connect(self):
+            print("Connected")
+            return super().on_connect()
+
+        def on_disconnect(self):
+            print("Disconnected")
+            return super().on_disconnect()
+
+        def on_data(self, tweet):
             try:
+
+                all_data = json.loads(tweet)
                 data = {
-                    'tweet_id': tweet.data['id'],
-                    'text': tweet.data['text'],
-                    'user_id': tweet.author_id,
-                    'created_at': tweet.created_at,
-                    'source': tweet.source
+                    'text': all_data['data']['text'],
                 }
-                counter += 1
-                if counter % 1 == 0:
-                    load(data)
-                if counter < 10:
+                jdata = json.dumps(
+                    data, default=json_util.default).encode('utf-8')
+                print(jdata)
+                producer.send('projek_akhir', jdata)
+                self.counter += 1
+                if self.counter < self.limit:
                     return True
                 else:
-                    stream.disconnect()
+                    streaming.disconnect()
+                return super().on_tweet(tweet)
             except BaseException as e:
-                print(e)
+                print('failed on_status,', str(e))
                 time.sleep(5)
 
-    # kurang ngeload data sqlite ke dalam folder
+    consumer = KafkaConsumer('projek_akhir', bootstrap_servers=['broker'],
+                             auto_offset_reset='earliest',
+                             enable_auto_commit=True,
+                             group_id='consumers',
+                             value_deserializer=lambda x: x.decode('utf8'),
+                             consumer_timeout_ms=1000,
+                             heartbeat_interval_ms=1000,
+                             api_version=(3, 0, 0))
+
     engine = create_engine(
         'postgresql+psycopg2://airflow:airflow@postgres:5432/airflow')
 
-    def load(data):
-        data_last = pd.DataFrame([data])
-        data_last.to_sql('tweets', con=engine, if_exists='append', index=False)
+    def preprocessing(text):
+        text = text.lower()
+        text = re.sub(
+            '(@[A-Za-z0-9_]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)', ' ', text)
+        text = re.sub('\\+n', ' ', text)
+        text = re.sub('\n', " ", text)
+        text = re.sub('rt', ' ', text)
+        text = re.sub('RT', ' ', text)
+        text = re.sub('user', ' ', text)
+        text = re.sub('USER', ' ', text)
+        text = re.sub(
+            '((www\.[^\s]+)|(https?://[^\s]+)|(http?://[^\s]+))', ' ', text)
+        text = re.sub(':', ' ', text)
+        text = re.sub(';', ' ', text)
+        text = re.sub('@', ' ', text)
+        text = re.sub('\\+n', ' ', text)
+        text = re.sub('\n', " ", text)
+        text = re.sub('\\+', ' ', text)
+        text = re.sub('  +', ' ', text)
+        text = re.sub(r'[-+]?[0-9]+', '', text)
+        text = text.replace("\\", " ")
+        text = re.sub('x..', ' ', text)
+        text = re.sub(' n ', ' ', text)
+        text = re.sub('\\+', ' ', text)
+        text = re.sub('  +', ' ', text)
+        return text
 
-    BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAB0%2BjgEAAAAASvDflBSjrqYO5%2Fhq3TcbnAj3PIk%3D57eJ03STpdcVW6I2xK0Snv5LaPcqssQVVq20AlFUZIA8NHTAGW"
+    def load(msg):
+        engine = create_engine(
+            'postgresql+psycopg2://airflow:airflow@postgres:5432/airflow')
+        temp = json.loads(msg)
+        print(temp)
+        data = pd.DataFrame([preprocessing(temp['text'])])
+        data.columns = ["0"]
+        data.to_sql('tweets', con=engine, if_exists='append', index=False)
 
-    stream = Listener(BEARER_TOKEN)
-    stream.add_rules(tweepy.StreamRule("Gempa Cianjur"))
-    stream.filter(tweet_fields=['author_id', 'created_at', 'source'])
+    BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAADAfkwEAAAAAroT3heQnRThxsNGhpOChKH6tSvs%3DrQUFlbEwdjup3PxEk1vW96Gsp2Ac5HL2NEwg7jJL4Hmakr03QM"
+
+    streaming = IDPrinter(BEARER_TOKEN)
+    streaming.add_rules(tweepy.StreamRule("alice in borderland lang:en"))
+    streaming.filter()
+
+    for msg in consumer:
+        load(msg.value)
 
     datasql = pd.read_sql_table('tweets', engine)
-    print(datasql.tail())
+    print(datasql.head)

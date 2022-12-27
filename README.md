@@ -1,3 +1,3 @@
-# Tugas Schedulling
+# Tugas Final Project
 
-TBD
+docker build . --tag final_extending_airflow:latest
